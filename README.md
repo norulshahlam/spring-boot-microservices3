@@ -50,7 +50,8 @@ Let's create a new service called `service-discovery` for this
 
 ### Dependencies
 
-Since this service will get registered in Discovery service, this service acts as Eureka client
+For this service to get registered in Discovery service, this service acts as Eureka client
+
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -97,3 +98,16 @@ Since this service will get registered in Discovery service, this service acts a
 - Click on user-service
 - Go to http://localhost:{assigned-port}/status/check
 - You will get the String value assigned
+
+
+### Account Service
+
+`Diagram and features`
+
+[![Image](./resources/account-service-1.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/account-service-1.jpg)  
+[![Image](./resources/account-service-2.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/account-service-1.jpg)
+
+### Dependencies
+
+For this service to get registered in Discovery service, this service acts as Eureka client
+
