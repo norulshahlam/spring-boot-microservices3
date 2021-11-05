@@ -10,9 +10,6 @@ Let's create a new service called `service-discovery` for this
 
 `Diagram`
 
-
-[![Image](src/main/others/ER-diagram.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](src/main/resources/ER-diagram.JPG)
-
 [![Image](./resources/service-discovery.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/service-discovery.JPG)
 
 `Dependencies`
