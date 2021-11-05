@@ -3,7 +3,13 @@
 # Version 2
 
 
+`3 tier architecture diagram`
 
+[![Image](./resources/3-tier-architecture.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/3-tier-architecture.JPG)
+
+`Use case`
+
+[![Image](./resources/3-tier-architecture-usecase.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/3-tier-architecture-usecase.JPG)
 
 
 
