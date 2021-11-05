@@ -10,7 +10,10 @@ Let's create a new service called `service-discovery` for this
 
 `Diagram`
 
-[![Image](./resources/service-discovery.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/service-discovery.jpg)
+
+[![Image](src/main/others/ER-diagram.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](src/main/resources/ER-diagram.JPG)
+
+[![Image](./resources/service-discovery.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/service-discovery.JPG)
 
 `Dependencies`
 
@@ -43,8 +46,8 @@ Let's create a new service called `service-discovery` for this
 
 `Diagram and features`
 
-[![Image](./resources/user-service-1.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/user-service-1.jpg)  
-[![Image](./resources/user-service-2.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/user-service-1.jpg)
+[![Image](./resources/user-service-1.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/user-service-1.JPG)  
+[![Image](./resources/user-service-2.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/user-service-1.JPG)
 
 ### Dependencies
 
@@ -112,8 +115,8 @@ p   ublic class UserController {
 
 `Diagram and features`
 
-[![Image](./resources/account-service-1.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/account-service-1.jpg)  
-[![Image](./resources/account-service-2.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/account-service-1.jpg)
+[![Image](./resources/account-service-1.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/account-service-1.JPG)  
+[![Image](./resources/account-service-2.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/account-service-1.JPG)
 
 ### Dependencies
 
@@ -180,7 +183,7 @@ For this service to get registered in Discovery service, this service acts as Eu
 
 `Diagram and features`
 
-[![Image](./resources/api-gateway-service-1.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/api-gateway-service-1.jpg)  
+[![Image](./resources/api-gateway-service-1.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/api-gateway-service-1.JPG)  
 
 ### Dependencies
 
