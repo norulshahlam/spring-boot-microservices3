@@ -9,7 +9,7 @@
 
 `Use case`
 
-[![Image](./resources/3-tier-architecture-usecase.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/3-tier-architecture-usecase.JPG)
+[![Image](./resources/3-tier-architecture-usecase.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/3-tier-architecture-usecase.jpg)
 
 
 
