@@ -3,9 +3,13 @@
 # Version 2
 
 
-`3 tier architecture diagram`
+`3 tier architecture`
 
-[![Image](./resources/3-tier-architecture.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/3-tier-architecture.JPG)
+[![Image](./resources/3-tier-architecture.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://ipwithease.com/three-tier-architecture-in-application/)
+
+`Layered Architecture`
+
+[![Image](./resources/3-layered-architecture.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://medium.com/java-vault/layered-architecture-b2f4ebe8d587)
 
 `Use case`
 
