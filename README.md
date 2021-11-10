@@ -1,6 +1,15 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
-# Version 2
+# Version 2 - Externalised Configuration
+
+Spring Boot likes you to externalize your configuration so you can work with the same application code in different environments. You can use properties files, YAML files, environment variables and command-line arguments to externalize configuration. Property values can be injected directly into your beans using the @Value annotation, accessed via Spring’s Environment abstraction or bound to structured objects.
+
+
+
+
+`Diagram`
+
+[![Image](./resources/config-server.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
 
 
 `3 tier architecture`
@@ -15,17 +24,59 @@
 
 [![Image](./resources/3-tier-architecture-usecase.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](./resources/3-tier-architecture-usecase.jpg)
 
+## Steps
+
+### Create config-server project   
+
+Add dependencies: 
+
+    <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+	</dependency>
+
+Add this in your main method:
+
+    @EnableConfigServer
+
+application.properties  
+        
+    spring.application.name=config-server
+    server.port=8012
+
+    spring.cloud.config.git.uri=https://github.com/norulshahlam/spring-boot-microservices3-properties
+    spring.cloud.config.server.git.username=norulshahlam
+    spring.cloud.config.server.git.password=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
+    spring.cloud.config.server.git.clone-on-start=true
+    spring.cloud.config.server.git.default-label=main
+
+    # FOR TESTING
+    app.name=config-server
+    app.description=you have loaded property files from ${app.name}
 
 
+### Other services - (api-gateway, user, account services)
 
+Add this properties in your other services:
 
+    spring.config.import=optional:configserver:http://localhost:8012
 
+    # FOR TESTING
+    app.name=config-server
+    app.description=you have loaded property files from ${app.name}
 
+Add this properties in your other services:
 
-
-
-
-
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-config</artifactId>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bootstrap</artifactId>
+    </dependency>
+    
 
 
 
