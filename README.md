@@ -2,6 +2,10 @@
 
 
 
+# [Version 4 - Spring Cloud Bus ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13503394#questions)
+
+
+
 # [Version 3 - Encrypt configuration files ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14465230#questions)
 
 By default, the spring cloud configuration server stores all property values as plain text. Storing sensitive data in the form of plain text may not be a good idea.
