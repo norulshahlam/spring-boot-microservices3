@@ -54,6 +54,8 @@ Restart config-server and run again in postman to see the value:
 
 We get back same encrypted value. This happens because config-server decrypt encrypted properties before it returns them. So the fact that they see unencrypted value returned instead of the encrypted value which is stored in property file tells that config-server was able to decrypt it.
 
+Once all is working, do the same for your spring.cloud.config.server.git.password
+
 
 #
 #
