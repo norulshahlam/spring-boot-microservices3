@@ -1,6 +1,162 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
-# Version 1  
+# [Version 2 - Externalised Configuration](https://springframework.guru/spring-external-configuration-data/)
+
+Spring Boot likes you to externalize your configuration so you can work with the same application code in different environments. You can use properties files, YAML files, environment variables and command-line arguments to externalize configuration. Property values can be injected directly into your beans using the @Value annotation, accessed via Spring’s Environment abstraction or bound to structured objects.
+
+`Diagram`
+
+[![Image](./resources/config-server.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
+
+
+## Steps
+
+### Create a GIT repo  
+
+Your config server will fetch properties from this repo. Create a new private repo, and copy the url
+
+### Create config-server project   
+
+Add dependencies: 
+
+    <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+	</dependency>
+
+Add this in your main method:
+
+    @EnableConfigServer
+
+application.properties  - ensure token is encrypted before pushing to git!
+        
+    spring.application.name=config-server
+    server.port=8012
+
+    spring.cloud.config.git.uri=https://github.com/norulshahlam/spring-boot-microservices3-properties
+    spring.cloud.config.server.git.username=norulshahlam
+    spring.cloud.config.server.git.password=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
+    spring.cloud.config.server.git.clone-on-start=true
+    spring.cloud.config.server.git.default-label=main
+
+   # FOR TESTING
+   app.description=you have loaded properties from application.properties in local ${spring.application.name}.
+
+
+### Other services - (api-gateway, user, account services)
+
+Add in application.properties:
+
+    spring.config.import=optional:configserver:http://localhost:8012
+
+    # FOR TESTING
+    app.description=you have loaded property files from ${spring.application.name}
+
+Add in pom.xml
+
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-config</artifactId>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bootstrap</artifactId>
+    </dependency>
+
+### Testing
+
+Let do the test from user-service. Create a controller in UserController.java:
+
+    @Value("${app.description}")
+    private String description;
+
+    @GetMapping("/status/check-property")
+	public String checkProperty() {
+		return description;
+	}
+
+Run this url using api-gateway. 8011 is your api-gateway port number
+
+    http://localhost:8011/user-service/user/status/check-property
+
+
+You should be getting values fetched from config-server. Try this from your other services too.  
+
+
+## Externalised multiple property files 
+
+We can set different property file which has diffferent level of priority. Below is the illustration, with P1 as the highest:
+
+
+[![Image](./resources/config-server2.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
+
+## Steps
+
+Create user-service property file in your private GIT repo and add this:
+
+     app.description=you have loaded property files from user-service in private git repo
+
+Then run the same url to test if this value is picked up. Make sure to restart all services:
+
+    http://localhost:8011/user-service/user/status/check-property
+
+You can also check the property files using client:
+
+    http://localhost:8012/config-server/default
+    http://localhost:8012/user-service/default      
+
+
+## [Profiles for multiple environments](https://www.baeldung.com/spring-profiles)  
+
+Spring Profiles provide a way to segregate parts of your application configuration and make it only available in certain environments. It automatically loads the properties in a application file for all profiles and the ones in profile-specific property files only for the specified profile. The properties in the profile-specific configuration override the ones in the master configuration.
+
+[![Image](https://miro.medium.com/max/1400/1*pql-CjRPKvmIp3Hew1Wxag.png "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://ashishgopalhattimare.medium.com/sprimera-a-spring-profile-merger-f9f780004872)
+
+The properties are imported in order from top to bottom. If the properties are also available on lower configurations, the property would get overridden by the lowest configuration i.e. if the same property exists in the my-app-{profile}.yml (1) and application-{profile}.yml (2), then the property in (1) would be taken as final property.
+
+From the above explanation, we can also conclude that the properties present in the lower configuration have higher priority than upper configurations. If a property is imported from my-app-{profile}.yml, it would not be overridden by the upper configurations.
+
+
+[![Image](./resources/config-server3.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html)
+
+### Steps for creating a profile
+
+In user-service, copy paste application.property and rename it to application-production.properties
+
+Add this in your application.properties to use this profile:
+
+    spring.profiles.active=production
+
+
+In your application-production.properties, change this:
+
+    # FOR TESTING
+    app.description=you have loaded property files from ${spring.application.name} production profile source code
+
+Run this url. You should get the messsage you changed
+
+    http://localhost:8011/user-service/user/status/check-property
+
+Repeat the same for config-server. Copy paste user-service.properties and rename it to user-service-production.properties
+
+In your user-service-production.properties, change this:
+
+    # FOR TESTING
+    app.description=you have loaded property files from user-service (production profile) in config server
+
+Run this url. You should get the messsage you changed. 
+
+    http://localhost:8011/user-service/user/status/check-property
+
+
+Noticed we don't need to activate the profile again in the config server, only once in the source code and the rest will follow accordingly, in order of priority explained in the image earlier. 
+
+
+
+############################################################################
+
+# Version 1
  
 ## Service Discovery
 
