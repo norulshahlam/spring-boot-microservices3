@@ -37,7 +37,7 @@ You will get encrypted value. Now copy, go to
     Body > raw > JSON > {ENCRYPTED-VALUE}
 
 You will get back the decrypted value. Now add this in your config-server application properties in GIT:
-
+ 
     app.name=random-value
 
 Restart config-server and run in postman to see the value:
