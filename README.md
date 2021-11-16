@@ -105,7 +105,7 @@ You can also check the property files using client:
 
     http://localhost:8012/config-server/default
     http://localhost:8012/user-service/default      
-
+ 
 
 ## [Profiles for multiple environments](https://www.baeldung.com/spring-profiles)  
 
