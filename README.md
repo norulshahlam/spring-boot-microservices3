@@ -109,6 +109,15 @@ You can also check the property files using client:
 
 ## [Profiles for multiple environments](https://www.baeldung.com/spring-profiles)  
 
+Spring Profiles provide a way to segregate parts of your application configuration and make it only available in certain environments. It automatically loads the properties in a application file for all profiles and the ones in profile-specific property files only for the specified profile. The properties in the profile-specific configuration override the ones in the master configuration.
+
+[![Image](https://miro.medium.com/max/1400/1*pql-CjRPKvmIp3Hew1Wxag.png "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://ashishgopalhattimare.medium.com/sprimera-a-spring-profile-merger-f9f780004872)
+
+The properties are imported in order from top to bottom. If the properties are also available on lower configurations, the property would get overridden by the lowest configuration i.e. if the same property exists in the my-app-{profile}.yml (1) and application-{profile}.yml (2), then the property in (1) would be taken as final property.
+
+From the above explanation, we can also conclude that the properties present in the lower configuration have higher priority than upper configurations. If a property is imported from my-app-{profile}.yml, it would not be overridden by the upper configurations.
+
+
 [![Image](./resources/config-server3.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html)
 
 ### Steps for creating a profile
@@ -141,7 +150,7 @@ Run this url. You should get the messsage you changed.
     http://localhost:8011/user-service/user/status/check-property
 
 
-Noticed we don't need to active the profile again in the config server, only once in the source code and the rest will follow accordingly, in order of priority explained in the image earlier. 
+Noticed we don't need to activate the profile again in the config server, only once in the source code and the rest will follow accordingly, in order of priority explained in the image earlier. 
 
 
 
