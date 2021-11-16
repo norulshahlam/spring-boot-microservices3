@@ -10,7 +10,7 @@ Spring cloud configuration server supports both `symmetric` and `asymmetric` way
 
 ## Steps
 
-For some weird thing, we can't start Eureka Discovery server. To resolve this (if you have this issue) add this dependency:
+For some weird thing, we can't start Eureka Discovery server ([Go to solutions](https://stackoverflow.com/questions/65164809/error-creating-bean-with-name-org-springframework-cloud-netflix-eureka-server-e)) To resolve this (if you have this issue) add this dependency:
 
      <dependency>
         <groupId>com.sun.jersey.contribs</groupId>
