@@ -1,5 +1,59 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
+
+
+# [Version 3 - Encrypt configuration files ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14465230#questions)
+
+By default, the spring cloud configuration server stores all property values as plain text. Storing sensitive data in the form of plain text may not be a good idea.
+
+Spring cloud configuration server supports both `symmetric` and `asymmetric` ways of encryption of configuration property values.
+
+## Steps
+
+For some weird thing, we can't start Eureka Discovery server. To resolve this (if you have this issue) add this dependency:
+
+     <dependency>
+        <groupId>com.sun.jersey.contribs</groupId>
+        <artifactId>jersey-apache-client4</artifactId>
+        <version>1.19.4</version>
+    </dependency>
+
+Download JCE jars (for java 8 & below)
+
+Add random value for your key ni config-server:
+
+     encrypt.key=dstfh69d6086darf9hg8606adsfgb0d6f0h8df6
+
+Then run in postman to encryption: 
+
+    POST http://localhost:8012/encrypt
+
+    Body > raw > JSON > shalam
+
+You will get encrypted value. Now copy, go to 
+
+    POST http://localhost:8012/decrypt
+
+    Body > raw > JSON > {ENCRYPTED-VALUE}
+
+You will get back the decrypted value
+
+#
+#
+
+
+
+
+
+#
+#
+
+
+
+
+
+
+
 # [Version 2 - Externalised Configuration](https://springframework.guru/spring-external-configuration-data/)
 
 Spring Boot likes you to externalize your configuration so you can work with the same application code in different environments. You can use properties files, YAML files, environment variables and command-line arguments to externalize configuration. Property values can be injected directly into your beans using the @Value annotation, accessed via Spring’s Environment abstraction or bound to structured objects.
