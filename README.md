@@ -20,15 +20,15 @@ For some weird thing, we can't start Eureka Discovery server ([Go to solutions](
 
 Download JCE jars (for java 8 & below)
 
-Add random value for your key ni config-server:
+Add random value for your key in config-server:
 
      encrypt.key=dstfh69d6086darf9hg8606adsfgb0d6f0h8df6
 
-Then run in postman to encryption: 
+Then run in postman to encryption random value: 
 
     POST http://localhost:8012/encrypt
 
-    Body > raw > JSON > shalam
+    Body > raw > JSON > random-value
 
 You will get encrypted value. Now copy, go to 
 
@@ -36,7 +36,24 @@ You will get encrypted value. Now copy, go to
 
     Body > raw > JSON > {ENCRYPTED-VALUE}
 
-You will get back the decrypted value
+You will get back the decrypted value. Now add this in your config-server application properties in GIT:
+
+    app.name=random-value
+
+Restart config-server and run in postman to see the value:
+
+    GET http://localhost:8012/user-service/default
+
+You will see the new value. Then, with the encrypted value earlier, replace the value with the encryppted one, with prefix:
+
+    {cipher}ace63b0baf2d031cb4d461078ba04ed9ea5ee23956f500dc734c9dd07b66531f
+
+Restart config-server and run again in postman to see the value:
+
+    GET http://localhost:8012/user-service/default
+
+We get back same encrypted value. This happens because config-server decrypt encrypted properties before it returns them. So the fact that they see unencrypted value returned instead of the encrypted value which is stored in property file tells that config-server was able to decrypt it.
+
 
 #
 #
