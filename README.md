@@ -1,12 +1,87 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
+
+
+# [Version 3 - Encrypt configuration files ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14465230#questions)
+
+By default, the spring cloud configuration server stores all property values as plain text. Storing sensitive data in the form of plain text may not be a good idea.
+
+[![Image](./resources/encrypt-property-values.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://cloud.spring.io/spring-cloud-config/reference/html/)
+
+Spring cloud configuration server supports both `symmetric` and `asymmetric` ways of encryption of configuration property values.
+
+## Steps
+
+For some weird thing, we can't start Eureka Discovery server ([Go to solutions](https://stackoverflow.com/questions/65164809/error-creating-bean-with-name-org-springframework-cloud-netflix-eureka-server-e)) To resolve this (if you have this issue) add this dependency:
+
+     <dependency>
+        <groupId>com.sun.jersey.contribs</groupId>
+        <artifactId>jersey-apache-client4</artifactId>
+        <version>1.19.4</version>
+    </dependency>
+
+Download JCE jars (for java 8 & below)
+
+Add random value for your key in config-server:
+
+     encrypt.key=dstfh69d6086darf9hg8606adsfgb0d6f0h8df6
+
+Then run in postman to encryption random value: 
+
+    POST http://localhost:8012/encrypt
+
+    Body > raw > JSON > random-value
+
+You will get encrypted value. Now copy, go to 
+
+    POST http://localhost:8012/decrypt
+
+    Body > raw > JSON > {ENCRYPTED-VALUE}
+
+You will get back the decrypted value. Now add this in your config-server application properties in GIT:
+
+    app.name=random-value
+
+Restart config-server and run in postman to see the value:
+
+    GET http://localhost:8012/user-service/default
+
+You will see the new value. Then, with the encrypted value earlier, replace the value with the encryppted one, with prefix:
+
+    {cipher}ace63b0baf2d031cb4d461078ba04ed9ea5ee23956f500dc734c9dd07b66531f
+
+Restart config-server and run again in postman to see the value:
+
+    GET http://localhost:8012/user-service/default
+
+We get back same encrypted value. This happens because config-server decrypt encrypted properties before it returns them. So the fact that they see unencrypted value returned instead of the encrypted value which is stored in property file tells that config-server was able to decrypt it.
+
+Once all is working, do the same for your spring.cloud.config.server.git.password
+
+
+#
+#
+
+
+
+
+
+#
+#
+
+
+
+
+
+
+
 # [Version 2 - Externalised Configuration](https://springframework.guru/spring-external-configuration-data/)
 
 Spring Boot likes you to externalize your configuration so you can work with the same application code in different environments. You can use properties files, YAML files, environment variables and command-line arguments to externalize configuration. Property values can be injected directly into your beans using the @Value annotation, accessed via Spring’s Environment abstraction or bound to structured objects.
 
 `Diagram`
 
-[![Image](./resources/config-server.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
+[![Image](./resources/config-server.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
 
 
 ## Steps
@@ -89,7 +164,7 @@ You should be getting values fetched from config-server. Try this from your othe
 We can set different property file which has diffferent level of priority. Below is the illustration, with P1 as the highest:
 
 
-[![Image](./resources/config-server2.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
+[![Image](./resources/config-server2.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
 
 ## Steps
 
@@ -105,7 +180,7 @@ You can also check the property files using client:
 
     http://localhost:8012/config-server/default
     http://localhost:8012/user-service/default      
-
+ 
 
 ## [Profiles for multiple environments](https://www.baeldung.com/spring-profiles)  
 
@@ -116,9 +191,9 @@ Spring Profiles provide a way to segregate parts of your application configurati
 The properties are imported in order from top to bottom. If the properties are also available on lower configurations, the property would get overridden by the lowest configuration i.e. if the same property exists in the my-app-{profile}.yml (1) and application-{profile}.yml (2), then the property in (1) would be taken as final property.
 
 From the above explanation, we can also conclude that the properties present in the lower configuration have higher priority than upper configurations. If a property is imported from my-app-{profile}.yml, it would not be overridden by the upper configurations.
-
-
-[![Image](./resources/config-server3.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html)
+ 
+ 
+[![Image](./resources/config-server3.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html)
 
 ### Steps for creating a profile
 
@@ -241,8 +316,8 @@ For this service to get registered in Discovery service, this service acts as Eu
 `Set up controller`
 
 	@RestController
-@   RequestMapping("/user")
-p   ublic class UserController {
+    @RequestMapping("/user")
+    public class UserController {
 
 	@Autowired
 	private Environment env;
