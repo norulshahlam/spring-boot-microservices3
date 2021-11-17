@@ -1,19 +1,23 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
-
-
 # [Version 4 - Spring Cloud Bus ](https://spring.io/projects/spring-cloud-bus)
 
 Spring Cloud Bus links nodes of a distributed system with a lightweight message broker. This can then be used to broadcast state changes (e.g. configuration changes) or other management instructions. AMQP and Kafka broker implementations are included with the project. Alternatively, any Spring Cloud Stream binder found on the classpath will work out of the box as a transport.
 
-[![Image](./resources/spring-cloud-bus.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
+
+## Steps
+
+
+
+
+[![Image](./resources/spring-cloud-bus.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
 
 
 # [Version 3 - Encrypt configuration files ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14465230#questions)
 
 By default, the spring cloud configuration server stores all property values as plain text. Storing sensitive data in the form of plain text may not be a good idea.
 
-[![Image](./resources/encrypt-property-values.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://cloud.spring.io/spring-cloud-config/reference/html/)
+[![Image](./resources/encrypt-property-values.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://cloud.spring.io/spring-cloud-config/reference/html/)
 
 Spring cloud configuration server supports both `symmetric` and `asymmetric` ways of encryption of configuration property values.
 
@@ -89,7 +93,7 @@ Spring Boot likes you to externalize your configuration so you can work with the
 
 `Diagram`
 
-[![Image](./resources/config-server.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
+[![Image](./resources/config-server.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
 
 
 ## Steps
@@ -172,7 +176,7 @@ You should be getting values fetched from config-server. Try this from your othe
 We can set different property file which has diffferent level of priority. Below is the illustration, with P1 as the highest:
 
 
-[![Image](./resources/config-server2.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
+[![Image](./resources/config-server2.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
 
 ## Steps
 
