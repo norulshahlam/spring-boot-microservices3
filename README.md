@@ -328,8 +328,8 @@ For this service to get registered in Discovery service, this service acts as Eu
 `Set up controller`
 
 	@RestController
-@   RequestMapping("/user")
-p   ublic class UserController {
+    @RequestMapping("/user")
+    public class UserController {
 
 	@Autowired
 	private Environment env;
