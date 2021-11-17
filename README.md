@@ -193,7 +193,7 @@ The properties are imported in order from top to bottom. If the properties are a
 From the above explanation, we can also conclude that the properties present in the lower configuration have higher priority than upper configurations. If a property is imported from my-app-{profile}.yml, it would not be overridden by the upper configurations.
  
  
-[![Image](./resources/config-server3.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html)
+[![Image](./resources/config-server3.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/boot-features-profiles.html)
 
 ### Steps for creating a profile
 
