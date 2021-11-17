@@ -22,6 +22,8 @@ Add dependencies to config-server
     </dependency>
 
 
+
+
 [![Image](./resources/spring-cloud-bus.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
 
 
