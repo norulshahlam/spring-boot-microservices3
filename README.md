@@ -7,7 +7,19 @@ Spring Cloud Bus links nodes of a distributed system with a lightweight message 
 
 ## Steps
 
+Add dependencies to these services - config,gateway,user,account
 
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+    </dependency>
+
+Add dependencies to config-server
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
 
 
 [![Image](./resources/spring-cloud-bus.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
