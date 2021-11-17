@@ -13,9 +13,10 @@ Spring Cloud Bus links nodes of a distributed system with a lightweight message 
 
 By default, the spring cloud configuration server stores all property values as plain text. Storing sensitive data in the form of plain text may not be a good idea.
 
+[![Image](./resources/encrypt-property-values.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://cloud.spring.io/spring-cloud-config/reference/html/)
+
 Spring cloud configuration server supports both `symmetric` and `asymmetric` ways of encryption of configuration property values.
 
-[![Image](./resources/encrypt-property-values.jpg "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://cloud.spring.io/spring-cloud-config/reference/html/)
 
 ## Steps
 
