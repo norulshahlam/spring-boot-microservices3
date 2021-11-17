@@ -36,10 +36,23 @@ After we update the configuration properties in our remote repository, we need t
 
 RabbitMQ is used as a message broker to implement advanced messaging queuing protocol (AMQP). A complete AMQP has three main components a broker, a consumer, and a producer. For simplicity, we will use docker to run RabbitMQ
 
-    docker run -d --hostname my-rabbit-host --name my-rabbit -p 5672:15672 rabbitmq:3-management
+For more info, click [here](https://www.baeldung.com/spring-cloud-bus) 
+
+    docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+
+
+Add RabbitMq properties in Spring app
+
+    spring.rabbitmq.host=localhost
+    spring.rabbitmq.port=5672
+    spring.rabbitmq.username=guest
+    spring.rabbitmq.password=guest
 
 
 
+
+
+**************************************************
 
 # [Version 3 - Encrypt configuration files ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14465230#questions)
 
