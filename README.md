@@ -32,7 +32,11 @@ After we update the configuration properties in our remote repository, we need t
     management.endpoints.web.exposure.include=busrefresh
 
 
+[Run RabbitMQ using Docker ](https://hub.docker.com/_/rabbitmq)
 
+RabbitMQ is used as a message broker to implement advanced messaging queuing protocol (AMQP). A complete AMQP has three main components a broker, a consumer, and a producer. For simplicity, we will use docker to run RabbitMQ
+
+    docker run -d --hostname my-rabbit-host --name my-rabbit -p 5672:15672 rabbitmq:3-management
 
 
 
