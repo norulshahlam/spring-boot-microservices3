@@ -4,6 +4,8 @@
 
 Spring Cloud Bus links nodes of a distributed system with a lightweight message broker. This can then be used to broadcast state changes (e.g. configuration changes) or other management instructions. AMQP and Kafka broker implementations are included with the project. Alternatively, any Spring Cloud Stream binder found on the classpath will work out of the box as a transport.
 
+[![Image](./resources/spring-cloud-bus.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
+
 
 ## Steps
 
@@ -21,10 +23,18 @@ Add dependencies to config-server
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
+Expose url in config-server application.properties. 
+
+[![Image](./resources/spring-cloud-bus-refresh.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-cloud-bus/docs/current/reference/html/#bus-endpoints)
+
+After we update the configuration properties in our remote repository, we need to tell Spring Cloud Bus that it's time to broadcast configuration changes to all micro services that have subscribed to this update. And the way we do it is by sending the POST request to an actuator endpoint called Bus-Refresh. And this is why we've added the actuator dependency to our config-server. So this post request will make config-server to load up new configuration properties from a remote git repository and make Spring Cloud Bus to broadcast these updates to all subscriber Fikret services.
+
+    management.endpoints.web.exposure.include=busrefresh
 
 
 
-[![Image](./resources/spring-cloud-bus.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
+
+
 
 
 # [Version 3 - Encrypt configuration files ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14465230#questions)
