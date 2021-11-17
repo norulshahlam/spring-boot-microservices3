@@ -1,7 +1,7 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
-# Version 1
-
+# Version 1  
+ 
 ## Service Discovery
 
 Eureka Server is an application that holds the information about all client-service applications. Every Micro service will register into the Eureka server and Eureka server knows all the client applications running on each port and IP address. Eureka Server is also known as Discovery Server.
@@ -85,8 +85,8 @@ For this service to get registered in Discovery service, this service acts as Eu
 `Set up controller`
 
 	@RestController
-@   RequestMapping("/user")
-p   ublic class UserController {
+    @RequestMapping("/user")
+    public class UserController {
 
 	@Autowired
 	private Environment env;
