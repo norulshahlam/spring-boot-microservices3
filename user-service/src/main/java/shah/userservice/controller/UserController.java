@@ -1,5 +1,8 @@
 package shah.userservice.controller;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -24,6 +27,7 @@ public class UserController {
 	
 	@EventListener({RefreshScopeRefreshedEvent.class})
 	public void onEvent() {
+		System.out.println(ZonedDateTime.now(ZoneId.systemDefault()));
 		System.out.println("NEW VALUE:"+description);
 	}
 	

@@ -9,21 +9,21 @@ Spring Cloud Bus links nodes of a distributed system with a lightweight message 
 
 ## Steps
 
-Add dependencies to these services - config,gateway,user,account
+`Add dependencies to these services - config,gateway,user,account`
 
     <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-bus-amqp</artifactId>
     </dependency>
-
-Add dependencies to config-server
+`
+Add dependencies to config-server`
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
-Expose url in config-server application.properties. 
+`Expose url in config-server application.properties.` 
 
 [![Image](./resources/spring-cloud-bus-refresh.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-cloud-bus/docs/current/reference/html/#bus-endpoints)
 
@@ -32,7 +32,7 @@ After we update the configuration properties in our remote repository, we need t
     management.endpoints.web.exposure.include=busrefresh
 
 
-[Run RabbitMQ using Docker ](https://hub.docker.com/_/rabbitmq)
+[`Run RabbitMQ using Docker`](https://hub.docker.com/_/rabbitmq)
 
 RabbitMQ is used as a message broker to implement advanced messaging queuing protocol (AMQP). A complete AMQP has three main components a broker, a consumer, and a producer. For simplicity, we will use docker to run RabbitMQ
 
@@ -41,7 +41,7 @@ For more info, click [here](https://www.baeldung.com/spring-cloud-bus)
     docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 
 
-Add RabbitMq properties in Spring app
+`Add RabbitMq properties in Spring app`
 
     spring.rabbitmq.host=localhost
     spring.rabbitmq.port=5672
