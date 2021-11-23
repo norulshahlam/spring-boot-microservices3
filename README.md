@@ -1,6 +1,90 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
+# [Version 4 - Spring Cloud Bus ](https://spring.io/projects/spring-cloud-bus)
 
+Spring Cloud Bus links nodes of a distributed system with a lightweight message broker. This can then be used to broadcast state changes (e.g. configuration changes) or other management instructions. AMQP broker implementations are included with the project. Alternatively, any Spring Cloud Stream binder found on the classpath will work out of the box as a transport.
+
+[![Image](./resources/spring-cloud-bus.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
+
+
+## Steps
+
+`Add dependencies to these services - config,gateway,user,account`
+
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+    </dependency>
+
+`Add dependencies to config-server` - this is to broadcast changes
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+`Expose url in config-server application.properties.` 
+
+[![Image](./resources/spring-cloud-bus-refresh.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-cloud-bus/docs/current/reference/html/#bus-endpoints)
+
+After we update the configuration properties in our remote repository, we need to tell Spring Cloud Bus that it's time to broadcast configuration changes to all micro services that have subscribed to this update. And the way we do it is by sending the POST request to an actuator endpoint called Bus-Refresh. And this is why we've added the actuator dependency to our config-server. So this post request will make config-server to load up new configuration properties from a remote git repository and make Spring Cloud Bus to broadcast these updates to all subscriber Fikret services.
+
+    management.endpoints.web.exposure.include=busrefresh
+
+
+[`Run RabbitMQ using Docker`](https://hub.docker.com/_/rabbitmq)
+
+RabbitMQ is used as a message broker to implement advanced messaging queuing protocol (AMQP). A complete AMQP has three main components a broker, a consumer, and a producer. For simplicity, we will use docker to run RabbitMQ
+
+For more info, click [here](https://www.baeldung.com/spring-cloud-bus) 
+
+    docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+
+
+`Add RabbitMq properties in config-server application.properties (source code)`
+
+    spring.rabbitmq.host=localhost
+    spring.rabbitmq.port=5672
+    spring.rabbitmq.username=guest
+    spring.rabbitmq.password=guest
+
+This properties will be applied to other services as they are connected to config-server
+
+`Add bootstrap.properties in api-gateway,user,account services`
+
+    spring.cloud.config.uri=http://localhost:8012
+    spring.cloud.config.name=<service-name>
+
+`Add @RefreshScope`
+
+Add this in your Controller where the changes are expected to happen. Else changes wont get reflected
+
+`Test using user-service`
+
+Change your app.description values in user-service.properties git. then run:
+
+    GET http://localhost:8012/user-service/default
+
+to see if the changes is reflected in git. then run:
+
+    GET http://localhost:8011/user-service/user/status/check-property
+
+to see the value u changed. It wont get reflected so u will see the old value. To broadcast the changes, simple run:
+
+    POST http://localhost:8012/actuator/busrefresh 
+
+then run:
+
+    GET http://localhost:8011/user-service/user/status/check-property
+
+and you will see the changes reflected. You can add eventListener in your controller to listen for changes and print the new values and check the logs.
+
+    @EventListener({RefreshScopeRefreshedEvent.class})
+	public void onEvent() {
+		System.out.println("NEW VALUE:"+description);
+	}
+
+**************************************************
 
 # [Version 3 - Encrypt configuration files ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14465230#questions)
 
@@ -10,11 +94,12 @@ By default, the spring cloud configuration server stores all property values as 
 
 Spring cloud configuration server supports both `symmetric` and `asymmetric` ways of encryption of configuration property values.
 
+
 ## Steps
 
-For some weird thing, we can't start Eureka Discovery server ([Go to solutions](https://stackoverflow.com/questions/65164809/error-creating-bean-with-name-org-springframework-cloud-netflix-eureka-server-e)) To resolve this (if you have this issue) add this dependency:
+For some weird thing, if you can't start Eureka Discovery server, [go to solutions.](https://stackoverflow.com/questions/65164809/error-creating-bean-with-name-org-springframework-cloud-netflix-eureka-server-e) Or, add this dependency:
 
-     <dependency>
+    <dependency>
         <groupId>com.sun.jersey.contribs</groupId>
         <artifactId>jersey-apache-client4</artifactId>
         <version>1.19.4</version>
@@ -39,7 +124,7 @@ You will get encrypted value. Now copy, go to
     Body > raw > JSON > {ENCRYPTED-VALUE}
 
 You will get back the decrypted value. Now add this in your config-server application properties in GIT:
-
+ 
     app.name=random-value
 
 Restart config-server and run in postman to see the value:

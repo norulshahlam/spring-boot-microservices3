@@ -38,9 +38,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
-	
-	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -52,8 +49,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-
 
 	<build>
 		<plugins>
