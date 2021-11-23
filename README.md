@@ -48,6 +48,8 @@ For more info, click [here](https://www.baeldung.com/spring-cloud-bus)
     spring.rabbitmq.username=guest
     spring.rabbitmq.password=guest
 
+This properties will be applied to other services as they are connected to config-server
+
 `Add bootstrap.properties in api-gateway,user,account services`
 
     spring.cloud.config.uri=http://localhost:8012
