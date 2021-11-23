@@ -30,8 +30,8 @@ Spring Cloud Bus links nodes of a distributed system with a lightweight message 
 After we update the configuration properties in our remote repository, we need to tell Spring Cloud Bus that it's time to broadcast configuration changes to all micro services that have subscribed to this update. And the way we do it is by sending the POST request to an actuator endpoint called Bus-Refresh. And this is why we've added the actuator dependency to our config-server. So this post request will make config-server to load up new configuration properties from a remote git repository and make Spring Cloud Bus to broadcast these updates to all subscriber Fikret services.
 
     management.endpoints.web.exposure.include=busrefresh
-
-
+ 
+ 
 [`Run RabbitMQ using Docker`](https://hub.docker.com/_/rabbitmq)
 
 RabbitMQ is used as a message broker to implement advanced messaging queuing protocol (AMQP). A complete AMQP has three main components a broker, a consumer, and a producer. For simplicity, we will use docker to run RabbitMQ
