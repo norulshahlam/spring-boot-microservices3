@@ -2,7 +2,7 @@
 
 # [Version 4 - Spring Cloud Bus ](https://spring.io/projects/spring-cloud-bus)
 
-Spring Cloud Bus links nodes of a distributed system with a lightweight message broker. This can then be used to broadcast state changes (e.g. configuration changes) or other management instructions. AMQP and Kafka broker implementations are included with the project. Alternatively, any Spring Cloud Stream binder found on the classpath will work out of the box as a transport.
+Spring Cloud Bus links nodes of a distributed system with a lightweight message broker. This can then be used to broadcast state changes (e.g. configuration changes) or other management instructions. AMQP broker implementations are included with the project. Alternatively, any Spring Cloud Stream binder found on the classpath will work out of the box as a transport.
 
 [![Image](./resources/spring-cloud-bus.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
 
@@ -15,8 +15,8 @@ Spring Cloud Bus links nodes of a distributed system with a lightweight message 
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-bus-amqp</artifactId>
     </dependency>
-`
-Add dependencies to config-server`
+
+`Add dependencies to config-server` - this is to broadcast changes
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -41,16 +41,46 @@ For more info, click [here](https://www.baeldung.com/spring-cloud-bus)
     docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 
 
-`Add RabbitMq properties in Spring app`
+`Add RabbitMq properties in config-server application.properties (source code)`
 
     spring.rabbitmq.host=localhost
     spring.rabbitmq.port=5672
     spring.rabbitmq.username=guest
     spring.rabbitmq.password=guest
 
+`Add bootstrap.properties in api-gateway,user,account services`
 
+    spring.cloud.config.uri=http://localhost:8012
+    spring.cloud.config.name=<service-name>
 
+`Add @RefreshScope`
 
+Add this in your Controller where the changes are expected to happen. Else changes wont get reflected
+
+`Test using user-service`
+
+Change your app.description values in user-service.properties git. then run:
+
+    GET http://localhost:8012/user-service/default
+
+to see if the changes is reflected in git. then run:
+
+    GET http://localhost:8011/user-service/user/status/check-property
+
+to see the value u changed. It wont get reflected so u will see the old value. To broadcast the changes, simple run:
+
+    POST http://localhost:8012/actuator/busrefresh 
+
+then run:
+
+    GET http://localhost:8011/user-service/user/status/check-property
+
+and you will see the changes reflected. You can add eventListener in your controller to listen for changes and print the new values and check the logs.
+
+    @EventListener({RefreshScopeRefreshedEvent.class})
+	public void onEvent() {
+		System.out.println("NEW VALUE:"+description);
+	}
 
 **************************************************
 

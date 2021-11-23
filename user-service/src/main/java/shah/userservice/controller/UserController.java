@@ -27,7 +27,6 @@ public class UserController {
 	
 	@EventListener({RefreshScopeRefreshedEvent.class})
 	public void onEvent() {
-		System.out.println(ZonedDateTime.now(ZoneId.systemDefault()));
 		System.out.println("NEW VALUE:"+description);
 	}
 	
