@@ -2,6 +2,19 @@
 
 # [Version 5  - Microservices communication ](https://spring.io/projects/spring-cloud-bus)
 
+We will learn how micro-services can communicate with each other. There are different ways how they communicate and there are different communication patterns. One of the ways is over a HTTP. This communication is Synchronous.
+
+When a HTTP request is sent, the sender service has to wait until it receives a response. It is also a one to one way of communication. One micro-service can send only one request to target a service.
+
+Another way is Asynchronous. It's over a protocol like AMQP, which stands for advance message queuing protocol. It uses queue to exchange messages. Message is placed into a queue and the sender micro-service does not need to wait until this message is processed. A micro-service which is called consumer consumes this message from a queue once the message is processed.
+
+This way there can be even multiple consumers of single message. And if a task to process the message is very time and resource consuming, like, for example, image or video downloads and processing, then a sender micro-service does not need to wait until this very heavy task is performed.
+
+## Use case - Bank account
+
+We currently have 2 microservices - user and account. user-service will have user information and account service will have account information of that user like savings types and available balance.
+
+
 
 
 # [Version 4 - Spring Cloud Bus ](https://spring.io/projects/spring-cloud-bus)
