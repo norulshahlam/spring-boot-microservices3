@@ -1,8 +1,5 @@
 package shah.userservice.controller;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
