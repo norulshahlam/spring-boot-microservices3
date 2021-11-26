@@ -14,6 +14,10 @@ This way there can be even multiple consumers of single message. And if a task t
 
 We currently have 2 microservices - user and account. user-service will have user information and account service will have account information of that user like savings types and available balance.This 2 will have 1-to-1 relationship
 
+[![Image](./resources/user-account-db1.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
+
+user-account-db1
+
 ## Steps
 
 Lets add dependencies to user & account services:
@@ -67,12 +71,36 @@ application.properties
     spring.jpa.show-sql=true
     spring.jpa.generate-ddl=true
 
+Add schema in account-service
+
+    create table  IF NOT EXISTS account (
+	id INT NOT NULL AUTO_INCREMENT,
+	account_number VARCHAR(50),
+	account_type TEXT,
+	balance DECIMAL(7,2),
+	user_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    UNIQUE(user_id)
+    );
+
+Add schema in user-service
+
+    create table IF NOT EXISTS user(
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(50),
+    email varchar(50),
+    password varchar(50),
+    PRIMARY KEY (id)
+    );
+
+
 Run database using Docker
 
     docker run --detach --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATABASE=mydb --env MYSQL_PASSWORD=root --env MYSQL_USER=admin --name localhost --publish 3306:3306 mysql:8.0
 
 
-Test db - Make sure user table is created
+Test db - Make sure user & account table is created & data inserted.
 
 `Run mysql in cli using docker`  
 
@@ -92,6 +120,11 @@ Test db - Make sure user table is created
 `Stop & remove all running proceses`  
 
     docker rm $(docker ps -a -q) -f
+
+`Test in HHTP requests using postman`
+
+    GET http://localhost:8011/user-service/user/get-user/1
+    GET http://localhost:8011/account-service/account/get-account/1
 
 # [Version 4 - Spring Cloud Bus ](https://spring.io/projects/spring-cloud-bus)
 

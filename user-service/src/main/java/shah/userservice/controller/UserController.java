@@ -25,31 +25,33 @@ public class UserController {
 
 	@Value("${app.description}")
 	private String description;
-	
+
 	@Autowired
 	private Environment env;
-	
+
 	@Autowired
 	private UserService userService;
-	
-	@EventListener({RefreshScopeRefreshedEvent.class})
+
+	@EventListener({ RefreshScopeRefreshedEvent.class })
 	public void onEvent() {
-		System.out.println("NEW VALUE:"+description);
+		System.out.println("NEW VALUE:" + description);
 	}
-	
+
 	@GetMapping("/status/check")
 	public String status() {
-		return "Working from user-service on port: "+env.getProperty("local.server.port")+" and instance id: "+env.getProperty("eureka.instance.instance-id");
+		return "Working from user-service on port: " + env.getProperty("local.server.port") + " and instance id: "
+				+ env.getProperty("eureka.instance.instance-id");
 	}
+
 	@GetMapping("/status/check-property")
 	public String checkProperty() {
 		return description;
 	}
-	
-	@GetMapping("/get-user/{id}")
-	public ResponseEntity<?> getUser(@PathVariable Long id){
-System.out.println(userService.getUser(id));
 
-		return new ResponseEntity<User>(userService.getUser(id),HttpStatus.FOUND);
+	@GetMapping("/get-user/{id}")
+	public ResponseEntity<?> getUser(@PathVariable Long id) {
+		System.out.println(userService.getUser(id));
+
+		return new ResponseEntity<User>(userService.getUser(id), HttpStatus.FOUND);
 	}
 }
