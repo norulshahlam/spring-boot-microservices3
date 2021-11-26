@@ -1,0 +1,54 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-UserServiceApplication<user-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.userservice.UserServiceApplication",
+      "projectName": "user-service",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ApiGatewayServiceApplication<api-gateway-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.apigatewayservice.ApiGatewayServiceApplication",
+      "projectName": "api-gateway-service",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ConfigServerApplication<config-server>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.configserver.ConfigServerApplication",
+      "projectName": "config-server",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ServiceDiscoveryApplication<service-discovery>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.servicediscovery.ServiceDiscoveryApplication",
+      "projectName": "service-discovery",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-AccountServiceApplication<account-service>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.accountservice.AccountServiceApplication",
+      "projectName": "account-service",
+      "args": ""
+    }
+  ]
+}

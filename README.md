@@ -12,10 +12,86 @@ This way there can be even multiple consumers of single message. And if a task t
 
 ## Use case - Bank account
 
-We currently have 2 microservices - user and account. user-service will have user information and account service will have account information of that user like savings types and available balance.
+We currently have 2 microservices - user and account. user-service will have user information and account service will have account information of that user like savings types and available balance.This 2 will have 1-to-1 relationship
+
+## Steps
+
+Lets add dependencies to user & account services:
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-rest</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <scope>annotationProcessor</scope>
+    </dependency>
+
+Create this:
+
+    entity/model
+    rpository
+    service
+    controller
+    schema.sql
+    data.sql
+
+application.properties
+        
+    #database
+    spring.datasource.url=jdbc:mysql://localhost:3306/mydb?useLegacyDatetimeCode=false&serverTimezone=UTC
+    spring.datasource.username=admin
+    spring.datasource.password=root
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+    spring.jpa.properties.hibernate.format.sql=true
+    spring.jpa.hibernate.ddl-auto=update
+    spring.sql.init.mode=always
+    spring.jpa.show-sql=true
+    spring.jpa.generate-ddl=true
+
+Run database using Docker
+
+    docker run --detach --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATABASE=mydb --env MYSQL_PASSWORD=root --env MYSQL_USER=admin --name localhost --publish 3306:3306 mysql:8.0
 
 
+Test db - Make sure user table is created
 
+`Run mysql in cli using docker`  
+
+    docker exec -it localhost bash
+
+`Connect to mysql`  
+
+    mysql -u admin -proot
+
+`Test`  
+
+    use mydb;  
+    show tables;
+    desc user;  
+    select * from user;  
+
+`Stop & remove all running proceses`  
+
+    docker rm $(docker ps -a -q) -f
 
 # [Version 4 - Spring Cloud Bus ](https://spring.io/projects/spring-cloud-bus)
 
