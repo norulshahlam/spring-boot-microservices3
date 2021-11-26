@@ -119,7 +119,7 @@ Test db - Make sure user & account table is created & data inserted.
 
     docker rm $(docker ps -a -q) -f
 
-`Test in HHTP requests using postman`
+`Once all tested, run HHTP requests using postman`
 
     GET http://localhost:8011/user-service/user/get-user/1
     GET http://localhost:8011/account-service/account/get-account/1
