@@ -100,26 +100,26 @@ Run database using Docker
 
 Test db - Make sure user & account table is created & data inserted.
 
-`Run mysql in cli using docker`  
+Run mysql in cli using docker
 
     docker exec -it localhost bash
 
-`Connect to mysql`  
+Connect to mysql  
 
     mysql -u admin -proot
 
-`Test`  
+Test  
 
     use mydb;  
     show tables;
     desc user;  
     select * from user;  
 
-`Stop & remove all running proceses`  
+Stop & remove all running proceses 
 
     docker rm $(docker ps -a -q) -f
 
-`Once all tested, run HHTP requests using postman`
+Once all tested, run HHTP requests using postman
 
     GET http://localhost:8011/user-service/user/get-user/1
     GET http://localhost:8011/account-service/account/get-account/1
@@ -133,21 +133,21 @@ Spring Cloud Bus links nodes of a distributed system with a lightweight message 
 
 ## Steps
 
-`Add dependencies to these services - config,gateway,user,account`
+Add dependencies to these services - config,gateway,user,account
 
     <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-bus-amqp</artifactId>
     </dependency>
 
-`Add dependencies to config-server` - this is to broadcast changes
+Add dependencies to config-server - this is to broadcast changes
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
-`Expose url in config-server application.properties.` 
+Expose url in config-server application.properties.
 
 [![Image](./resources/spring-cloud-bus-refresh.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://docs.spring.io/spring-cloud-bus/docs/current/reference/html/#bus-endpoints)
 
@@ -165,7 +165,7 @@ For more info, click [here](https://www.baeldung.com/spring-cloud-bus)
     docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 
 
-`Add RabbitMq properties in config-server application.properties (source code)`
+Add RabbitMq properties in config-server application.properties (source code)
 
     spring.rabbitmq.host=localhost
     spring.rabbitmq.port=5672
@@ -174,16 +174,16 @@ For more info, click [here](https://www.baeldung.com/spring-cloud-bus)
 
 This properties will be applied to other services as they are connected to config-server
 
-`Add bootstrap.properties in api-gateway,user,account services`
+Add bootstrap.properties in api-gateway,user,account services
 
     spring.cloud.config.uri=http://localhost:8012
     spring.cloud.config.name=<service-name>
 
-`Add @RefreshScope`
+Add @RefreshScope
 
 Add this in your Controller where the changes are expected to happen. Else changes wont get reflected
 
-`Test using user-service`
+Test using user-service
 
 Change your app.description values in user-service.properties git. then run:
 
