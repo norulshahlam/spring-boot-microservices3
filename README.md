@@ -12,11 +12,9 @@ This way there can be even multiple consumers of single message. And if a task t
 
 ## Use case - Bank account
 
-We currently have 2 microservices - user and account. user-service will have user information and account service will have account information of that user like savings types and available balance.This 2 will have 1-to-1 relationship
+We currently have 2 microservices - user and account. user-service will have user information and account service will have account information of that user like savings types and available balance. This is a one-to-many relationship: one user can have many account.
 
 [![Image](./resources/user-account-db1.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
-
-user-account-db1
 
 ## Steps
 
