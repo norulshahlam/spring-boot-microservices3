@@ -103,6 +103,16 @@ Once all tested, run HHTP requests using postman
     GET http://localhost:8011/user-service/user/get-user/1
     GET http://localhost:8011/account-service/account/get-account/1
 
+Now we are good to go! Lets proceed to call from user service to account service.
+
+************************************************************************************************
+
+
+
+
+
+
+
 # [Version 4 - Spring Cloud Bus ](https://spring.io/projects/spring-cloud-bus)
 
 Spring Cloud Bus links nodes of a distributed system with a lightweight message broker. This can then be used to broadcast state changes (e.g. configuration changes) or other management instructions. AMQP broker implementations are included with the project. Alternatively, any Spring Cloud Stream binder found on the classpath will work out of the box as a transport.
