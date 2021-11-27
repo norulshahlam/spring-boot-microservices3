@@ -21,8 +21,6 @@ import lombok.NoArgsConstructor;
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long id;
     private String accountType;
     private Double balance;
     private String accountNumber;

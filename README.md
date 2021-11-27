@@ -14,38 +14,17 @@ This way there can be even multiple consumers of single message. And if a task t
 
 We currently have 2 microservices - user and account. user-service will have user information and account service will have account information of that user like savings types and available balance. This is a one-to-many relationship: one user can have many account.
 
-[![Image](./resources/user-account-db1.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
+[![Image](./resources/user-account-communication.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/projects/spring-cloud-bus)
 
 ## Steps
 
 Lets add dependencies to user & account services:
 
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-rest</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
-    </dependency>
-
-    <dependency>
-        <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
-        <scope>annotationProcessor</scope>
-    </dependency>
 
 Create this:
 
