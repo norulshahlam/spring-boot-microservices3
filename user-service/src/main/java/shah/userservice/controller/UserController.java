@@ -37,9 +37,6 @@ public class UserController {
 	private Environment env;
 
 	@Autowired
-	RestTemplate restTemplate;
-
-	@Autowired
 	private UserService userService;
 
 	@EventListener({ RefreshScopeRefreshedEvent.class })
@@ -66,17 +63,6 @@ public class UserController {
 	@GetMapping("/get-user-account/{userId}")
 	public ResponseEntity<?> getUserAccount(@PathVariable Long userId) {
 
-		String accountUrl = "http://localhost:8011/account-service/account/get-account/" + userId;
-
-		// DONT USE THIS METHOD
-		// List<AccountResponseModel> userAccounts =
-		// Arrays.asList(restTemplate.getForObject(accountUrl,
-		// AccountResponseModel[].class));
-
-		ResponseEntity<List<AccountResponseModel>> userAccount = restTemplate.exchange(accountUrl, HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<AccountResponseModel>>() {
-				});
-		List<AccountResponseModel> userAccounts = userAccount.getBody();
-		return new ResponseEntity<List<AccountResponseModel>>(userAccounts, HttpStatus.OK);
+		return new ResponseEntity<List<AccountResponseModel>>(userService.getUserAccounts(userId), HttpStatus.OK);
 	}
 }
