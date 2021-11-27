@@ -1,5 +1,27 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
+# [Version 6  - Microservices communication - Part 2 ](https://spring.io/projects/spring-cloud-bus)
+
+## Last lesson was setup for the database and data. Now lets communicate!
+
+### Method 1 -  [RestTemplate](hhttps://www.youtube.com/watch?v=F3uJyeAyv5g)
+[Why use ParameterizedTypeReference?](https://stackoverflow.com/questions/58254381/resttemplate-get-list-of-objects-why-use-parameterizedtypereference-instead-of)
+
+### Steps
+
+Create Beans in main method
+
+	@Bean
+	@LoadBalanced
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
+
+
+
+*********************************************************************************
+
+
 # [Version 5  - Microservices communication ](https://spring.io/projects/spring-cloud-bus)
 
 We will learn how micro-services can communicate with each other. There are different ways how they communicate and there are different communication patterns. One of the ways is over a HTTP. This communication is Synchronous.
@@ -104,6 +126,8 @@ Once all tested, run HHTP requests using postman
     GET http://localhost:8011/account-service/account/get-account/1
 
 Now we are good to go! Lets proceed to call from user service to account service.
+
+************************************************************************************************
 
 
 
