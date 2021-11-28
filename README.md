@@ -72,7 +72,23 @@ Add feign dependencies
 Add in main method
 
     @EnableFeignClients
-    
+
+Create interface for feighClient. This works similar to restTemplate
+
+    @FeignClient(name="account-service")
+    public interface AccountFeignClient {
+  
+    @GetMapping("/account/get-account/{userId}")
+	public List<AccountResponseModel> getAccounts(@PathVariable Long userId);
+    }
+
+Add/edit UserService
+
+    @Autowired
+	AccountFeignClient accountFeignClient;
+
+    List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
+
 
 
 *********************************************************************************

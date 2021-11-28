@@ -28,8 +28,8 @@ public class UserService {
 	@Autowired
 	private final UserRepository userRepo;
 
-	@Autowired
-	RestTemplate restTemplate;
+	// @Autowired
+	// RestTemplate restTemplate;
 
 	@Autowired
 	AccountFeignClient accountFeignClient;
