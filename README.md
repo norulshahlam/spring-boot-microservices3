@@ -19,6 +19,60 @@ Create Beans in main method
 		return new RestTemplate();
 	}
 
+Create Response Model
+
+    @Data
+    public class AccountResponseModel {
+    private String accountType;
+    private Double balance;
+    private String accountNumber;
+    private Long userId;
+    }
+
+Application.properties
+
+    account.url=http://account-service/account/
+
+Service layer
+
+    public List<AccountResponseModel> getUserAccounts(Long userId) {
+
+		String url = accountUrl+ "account/get-account/" + userId;
+
+		ResponseEntity<List<AccountResponseModel>> response = restTemplate.exchange(url, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<AccountResponseModel>>() {
+				});
+		List<AccountResponseModel> userAccounts = response.getBody();
+		return userAccounts;
+	}
+
+Controller
+
+    @GetMapping("/get-user-account/{userId}")
+	public ResponseEntity<?> getUserAccount(@PathVariable Long userId) {
+
+		return new ResponseEntity<List<AccountResponseModel>>(userService.getUserAccounts(userId), HttpStatus.OK);
+	}
+
+Test in postman
+
+    GET http://localhost:8011/user-service/user/get-user-account/5
+    Header -> Accept -> application/json
+
+### Method 2 - [Using Feign Client](https://cloud.spring.io/spring-cloud-openfeign/reference/html/)
+
+
+Add feign dependencies
+
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+
+Add in main method
+
+    @EnableFeignClients
+    
 
 
 *********************************************************************************

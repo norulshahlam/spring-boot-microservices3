@@ -3,6 +3,7 @@ package shah.userservice.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import shah.userservice.repository.UserRepository;
 @Data
 @Service
 public class UserService {
+
+	@Value("${account.url}")
+	private String accountUrl;
 
 	@Autowired
 	private final UserRepository userRepo;
@@ -34,14 +38,14 @@ public class UserService {
 
 	public List<AccountResponseModel> getUserAccounts(Long userId) {
 
-		String accountUrl = "http://localhost:8011/account-service/account/get-account/" + userId;
+		String url = accountUrl+ "account/get-account/" + userId;
 
 		// DONT USE THIS METHOD
 		// List<AccountResponseModel> userAccounts =
 		// Arrays.asList(restTemplate.getForObject(accountUrl,
 		// AccountResponseModel[].class));
 
-		ResponseEntity<List<AccountResponseModel>> response = restTemplate.exchange(accountUrl, HttpMethod.GET, null,
+		ResponseEntity<List<AccountResponseModel>> response = restTemplate.exchange(url, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<AccountResponseModel>>() {
 				});
 		List<AccountResponseModel> userAccounts = response.getBody();
