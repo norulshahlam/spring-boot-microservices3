@@ -31,7 +31,7 @@ Create Response Model
 
 Application.properties
 
-    account.url=http://account-service/account/
+    account.url=http://account-service/
 
 Service layer
 
