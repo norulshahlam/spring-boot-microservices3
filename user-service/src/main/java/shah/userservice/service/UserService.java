@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.Data;
+import shah.userservice.dto.AccountFeignClient;
 import shah.userservice.dto.AccountResponseModel;
 import shah.userservice.model.User;
 import shah.userservice.repository.UserRepository;
@@ -27,6 +28,9 @@ public class UserService {
 
 	@Autowired
 	RestTemplate restTemplate;
+
+	@Autowired
+	AccountFeignClient accountFeignClient;
 
 	public UserService(UserRepository userRepo) {
 		this.userRepo = userRepo;
@@ -49,6 +53,9 @@ public class UserService {
 				new ParameterizedTypeReference<List<AccountResponseModel>>() {
 				});
 		List<AccountResponseModel> userAccounts = response.getBody();
+
+	// List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
+
 		return userAccounts;
 	}
 }

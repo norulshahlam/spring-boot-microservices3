@@ -21,6 +21,7 @@ public class AccountService {
 	}
 	
 	public List<Account> getUser(Long userId){
+		System.out.println(accountRepo.findByUserId(userId));
 		return accountRepo.findByUserId(userId);
 	}
 }
