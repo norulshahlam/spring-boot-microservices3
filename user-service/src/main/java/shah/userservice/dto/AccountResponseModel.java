@@ -1,8 +1,11 @@
 package shah.userservice.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class AccountResponseModel {
   private String accountType;
   private Double balance;

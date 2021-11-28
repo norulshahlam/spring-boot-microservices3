@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import shah.userservice.dto.AccountResponseModel;
 import shah.userservice.model.User;
@@ -22,6 +23,7 @@ import shah.userservice.service.UserService;
 
 @RestController
 @RefreshScope
+@RequiredArgsConstructor
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
@@ -34,7 +36,6 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
 
 	@EventListener({ RefreshScopeRefreshedEvent.class })
 	public void onEvent() {
@@ -60,7 +61,8 @@ public class UserController {
 	@GetMapping("/get-user-account/{userId}")
 	public ResponseEntity<?> getUserAccount(@PathVariable Long userId) {
 
-		System.out.println(33);
+	System.out.println(1);
+
 		return new ResponseEntity<List<AccountResponseModel>>(userService.getUserAccounts(userId), HttpStatus.OK);
 	}
 }

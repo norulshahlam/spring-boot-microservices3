@@ -171,6 +171,7 @@ Test
     show tables;
     desc user;  
     select * from user;  
+    select * from account;  
 
 Stop & remove all running proceses 
 

@@ -43,7 +43,7 @@ public class AccountController {
 
 	@GetMapping("/get-account/{userId}")
 	public ResponseEntity<?> getUser(@PathVariable Long userId) {
-		System.out.println(accountService.getUser(userId));
+		System.out.println(3);
 
 		return new ResponseEntity<List<Account>>(accountService.getUser(userId), HttpStatus.FOUND);
 	}

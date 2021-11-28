@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import shah.userservice.dto.AccountFeignClient;
 import shah.userservice.dto.AccountResponseModel;
 import shah.userservice.model.User;
@@ -18,6 +19,7 @@ import shah.userservice.repository.UserRepository;
 
 @Data
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
 	@Value("${account.url}")
@@ -32,30 +34,26 @@ public class UserService {
 	@Autowired
 	AccountFeignClient accountFeignClient;
 
-	public UserService(UserRepository userRepo) {
-		this.userRepo = userRepo;
-	}
-
 	public User getUser(Long id) {
 		return userRepo.findById(id).get();
 	}
 
 	public List<AccountResponseModel> getUserAccounts(Long userId) {
 
-		String url = accountUrl+ "account/get-account/" + userId;
+		String url = accountUrl + "account/get-account/" + userId;
 
 		// DONT USE THIS METHOD
 		// List<AccountResponseModel> userAccounts =
 		// Arrays.asList(restTemplate.getForObject(accountUrl,
 		// AccountResponseModel[].class));
 
-		// ResponseEntity<List<AccountResponseModel>> response = restTemplate.exchange(url, HttpMethod.GET, null,
-		// 		new ParameterizedTypeReference<List<AccountResponseModel>>() {
-		// 		});
+		// ResponseEntity<List<AccountResponseModel>> response =
+		// restTemplate.exchange(url, HttpMethod.GET, null,
+		// new ParameterizedTypeReference<List<AccountResponseModel>>() {
+		// });
 		// List<AccountResponseModel> userAccounts = response.getBody();
+		List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
 
-	List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
-	
 		return userAccounts;
 	}
 }
