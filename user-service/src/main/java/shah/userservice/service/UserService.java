@@ -49,13 +49,13 @@ public class UserService {
 		// Arrays.asList(restTemplate.getForObject(accountUrl,
 		// AccountResponseModel[].class));
 
-		ResponseEntity<List<AccountResponseModel>> response = restTemplate.exchange(url, HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<AccountResponseModel>>() {
-				});
-		List<AccountResponseModel> userAccounts = response.getBody();
+		// ResponseEntity<List<AccountResponseModel>> response = restTemplate.exchange(url, HttpMethod.GET, null,
+		// 		new ParameterizedTypeReference<List<AccountResponseModel>>() {
+		// 		});
+		// List<AccountResponseModel> userAccounts = response.getBody();
 
-	// List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
-
+	List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
+	
 		return userAccounts;
 	}
 }
