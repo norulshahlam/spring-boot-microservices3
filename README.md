@@ -60,7 +60,7 @@ Test in postman
     Header -> Accept -> application/json
 
 ### Method 2 - [Using Feign Client](https://cloud.spring.io/spring-cloud-openfeign/reference/html/)
-
+### [Solutions to Feign Client issue](https://stackoverflow.com/questions/70038094/error-302-using-feignclient-in-spring-boot-microservices)
 
 Add feign dependencies
 
@@ -89,7 +89,43 @@ Add/edit UserService
 
     List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
 
-# PENDING: ERROR NOT RESOLVED
+Test - same as RestTemplate approach, using Postman
+
+    GET http://localhost:8011/user-service/user/get-user-account/5
+    Header -> Accept -> application/json
+
+`Logging`
+
+Add in application.properties
+
+    #Use relative path
+    logging.level.shah.userservice.dto.AccountFeignClient=DEBUG
+
+Add @Beans in main class
+
+    @Bean
+	Logger.Level feignLoggerLevel() {
+		return Logger.Level.FULL;
+	}
+
+Run again in postman
+
+    GET http://localhost:8011/user-service/user/get-user-account/5
+    Header -> Accept -> application/json
+
+Check your application console for the logs
+
+
+
+
+
+
+
+
+
+
+
+
 
 *********************************************************************************
 

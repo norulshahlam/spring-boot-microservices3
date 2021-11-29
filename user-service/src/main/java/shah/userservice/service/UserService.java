@@ -52,7 +52,9 @@ public class UserService {
 		// new ParameterizedTypeReference<List<AccountResponseModel>>() {
 		// });
 		// List<AccountResponseModel> userAccounts = response.getBody();
-		List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
+		 List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
+
+System.out.println(1);
 
 		return userAccounts;
 	}
