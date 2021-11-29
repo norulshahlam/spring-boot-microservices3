@@ -115,8 +115,11 @@ Run again in postman
 
 Check your application console for the logs
 
+### [Handle Feign exception using decoder](https://www.appsdeveloperblog.com/feign-error-handling-with-errordecoder/)
 
+Feign ErrorDecoder is for exception handling. [Here](https://github.com/OpenFeign/feign/wiki/Custom-error-handling) is the url for your reference.
 
+### Steps
 
 
 
