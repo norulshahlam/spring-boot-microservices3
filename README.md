@@ -121,10 +121,53 @@ Feign ErrorDecoder is for exception handling. [Here](https://github.com/OpenFeig
 
 ### Steps
 
+FeignErrorDecoder.java - Handle Feign Exceptions
 
+    public class FeignErrorDecoder implements ErrorDecoder {
 
+    @Override
+    public Exception decode(String methodKey, Response response) {
 
+        switch (response.status()) {
+        case 400:
+            break;
 
+        case 302:
+            return new ResponseStatusException(HttpStatus.valueOf(response.status()),
+                "Feign Client only accept status 2xx, else with return FeignException");
+
+        case 404:
+            return new ResourceNotFoundException("Account not found");
+
+        default:
+            return new Exception(response.reason());
+        }
+        return null;
+        }
+    }
+
+Create @Beans in main class
+
+    @Bean
+    public FeignErrorDecoder feignErrorDecoder() {
+        return new FeignErrorDecoder();
+    }
+
+`Test`
+
+Now lets trigger exception. As we now know, Feign Client only accepts status code of 2xx as normal, the rest will trigger exception. Lets change the controller in AccountService to return status FOUND ie 302. 
+
+in AccountController.java,
+
+from 
+
+	return new ResponseEntity<List<Account>>(accountService.getUser(userId), HttpStatus.OK);
+
+change status code to
+
+    return new ResponseEntity<List<Account>>(accountService.getUser(userId), HttpStatus.FOUND);
+
+This will trigger exception and will display the message as we configured earlier.
 
 
 

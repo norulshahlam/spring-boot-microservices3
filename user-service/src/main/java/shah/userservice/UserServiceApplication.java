@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 import feign.Logger;
+import shah.userservice.exception.FeignErrorDecoder;
 
 @SpringBootApplication
 @EnableEurekaClient
@@ -29,6 +30,11 @@ public class UserServiceApplication {
 	@Bean
 	Logger.Level feignLoggerLevel() {
 		return Logger.Level.FULL;
+	}
+
+	@Bean
+	public FeignErrorDecoder feignErrorDecoder() {
+		return new FeignErrorDecoder();
 	}
 
 }
