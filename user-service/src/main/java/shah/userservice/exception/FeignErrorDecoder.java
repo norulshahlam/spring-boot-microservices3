@@ -18,7 +18,7 @@ public class FeignErrorDecoder implements ErrorDecoder {
 
       case 302:
         return new ResponseStatusException(HttpStatus.valueOf(response.status()),
-            "Feign Client only accept status 2xx, else with return FeignException");
+            "Feign Client only accept status 2xx, else will trigger FeignException");
 
       case 404:
         return new ResourceNotFoundException("Account not found");
