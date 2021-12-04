@@ -55,7 +55,15 @@ Add your fallback method
     }
     }
 
+`Test`
 
+1st test - stop your account-service and run 
+
+    GET http://localhost:8011/user-service/user/get-user-account/1
+
+2nd test - start your account-service but with wrong url in your feign client eg @FeignClient(name = "account-serviceeee") & run 
+
+    GET http://localhost:8011/user-service/user/get-user-account/1
 
 
 # [Version 6  - Microservices communication - Part 2 ](https://spring.io/projects/spring-cloud-bus)
