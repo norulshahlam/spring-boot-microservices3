@@ -23,13 +23,37 @@ Add dependency in user-service
 
 Add in main class
 
-    @EnableCircuitBreaker
+    @CircuitBreaker
 
 Add in application.properties
 
     feign.circuitbreaker.enabled=true
 
+Add your fallback method
 
+    @Component
+    class AccountFallBackFactory implements FallbackFactory<AccountFeignClient> {
+
+    @Override
+    public AccountFeignClient create(Throwable cause) {
+        return new AccountFeignClientFallback(cause);
+    }
+    }
+
+    class AccountFeignClientFallback implements AccountFeignClient {
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Throwable cause;
+
+    public AccountFeignClientFallback(Throwable cause) {
+        this.cause = cause;
+    }
+
+    @Override
+    public List<AccountResponseModel> getAccounts(Long userId) {
+        logger.error("Unable to get user account, using FallbackFactory: ", cause);
+        return new ArrayList<AccountResponseModel>();
+    }
+    }
 
 
 
