@@ -1,5 +1,39 @@
 # [Learn to build RESTful Microservices with Spring Boot and Spring Cloud](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13233710#overview)
 
+# [Version 7  - Hystrix Circuit Breaker ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14796232#overview)
+
+Circuit Breaker pattern prevents failure cascading and gives a default behavior when services fail. Netflix Hystrix allows us to introduce fault tolerance and latency tolerance by isolating failure and by preventing them from cascading into the other part of the system building a more robust distributed application
+
+## Use case
+
+
+[![Image](./resources/hystrix-circuit-breaker.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/guides/gs/cloud-circuit-breaker/)
+
+We will implement Circuit Breaker on user-service such that if any requests made from user-service failed, it will have a fallback method to execute.
+
+`Steps`
+
+Add dependency in user-service
+
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        <version>2.2.10.RELEASE</version>
+    </dependency>
+
+Add in main class
+
+    @EnableCircuitBreaker
+
+Add in application.properties
+
+    feign.circuitbreaker.enabled=true
+
+
+
+
+
+
 # [Version 6  - Microservices communication - Part 2 ](https://spring.io/projects/spring-cloud-bus)
 
 ## Last lesson was setup for the database and data. Now lets communicate!
