@@ -25,10 +25,6 @@ Add in main class
 
     @CircuitBreaker
 
-Add in application.properties
-
-    feign.circuitbreaker.enabled=true
-
 Add your fallback method
 
     @Component
@@ -37,7 +33,7 @@ Add your fallback method
     @Override
     public AccountFeignClient create(Throwable cause) {
         return new AccountFeignClientFallback(cause);
-    }
+        }
     }
 
     class AccountFeignClientFallback implements AccountFeignClient {
@@ -50,10 +46,25 @@ Add your fallback method
 
     @Override
     public List<AccountResponseModel> getAccounts(Long userId) {
-        logger.error("Unable to get user account, using FallbackFactory: ", cause);
+        if (cause instanceof FeignException) {
+        logger.error("Feign Exception occured: " + cause.getLocalizedMessage());
+        } else if (cause instanceof HystrixTimeoutException) {
+        logger.error("Timeout occured connecting to service: " + cause.getLocalizedMessage());
+        } else {
+        logger.error("Other exception occured: " + cause.getLocalizedMessage());
+        }
         return new ArrayList<AccountResponseModel>();
+        }
     }
-    }
+
+
+Add in application.properties. We set the feignClient timeout to trigger first before hystrix so we can get meaningful error message from feignClient
+
+    feign.circuitbreaker.enabled=true
+    feign.client.config.default.connect-timeout=5000
+    feign.client.config.default.read-timeout=5000
+    hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=6000
+
 
 `Test`
 
@@ -61,10 +72,15 @@ Add your fallback method
 
     GET http://localhost:8011/user-service/user/get-user-account/1
 
-2nd test - start your account-service but with wrong url in your feign client eg @FeignClient(name = "account-serviceeee") & run 
+2nd test - start your account-service but with wrong url in your feign client: @FeignClient(name = "account-serviceeee") & run 
 
     GET http://localhost:8011/user-service/user/get-user-account/1
 
+3rd test - start your account-service with correct url in your feign client but set the return status of account-controller to `FOUND` & run 
+
+    GET http://localhost:8011/user-service/user/get-user-account/1
+
+And lastly change the return status of account-controller to `OK` and run the same url to get correct response.
 
 # [Version 6  - Microservices communication - Part 2 ](https://spring.io/projects/spring-cloud-bus)
 
