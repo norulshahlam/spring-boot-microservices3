@@ -4,6 +4,11 @@
 
 Spring Cloud Sleuth is used to generate and attach the trace id, span id to the logs so that these can then be used by tools like Zipkin and ELK for storage and analysis. Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures.
 
+## Use case
+
+
+[![Image](./resources/sleuth-zipkin.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://spring.io/guides/gs/cloud-circuit-breaker/)
+
 
 ## Steps
 
@@ -20,6 +25,11 @@ Add properties in config-server git application.properties
     spring.zipkin.sender.type=web
     spring.zipkin.sampler.probability=1
 
+
+
+
+
+#
 # [Version 7  - Hystrix Circuit Breaker ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14796232#overview)
 
 Circuit Breaker pattern prevents failure cascading and gives a default behavior when services fail. Netflix Hystrix allows us to introduce fault tolerance and latency tolerance by isolating failure and by preventing them from cascading into the other part of the system building a more robust distributed application
