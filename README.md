@@ -6,7 +6,7 @@ Spring Cloud Sleuth is used to generate and attach the trace id, span id to the 
 
 ### Trace and Span
 
-TraceId – This is an id that is assigned to a single request, job, or action. Something like each unique user initiated web request will have its own traceId. 
+TraceId – This is an id that is assigned to a single request, job, or action. Something like each unique user initiated web request will have its own traceId.   
 SpanId – Tracks a unit of work. Think of a request that consists of multiple steps. Each step could have its own spanId and be tracked individually
 
 [![Image](./resources/sleuth-zipkin.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14898450#questions)
@@ -34,14 +34,14 @@ Add properties in config-server git application.properties
 
 Just do any GET request and check the logs. This looks like a normal log, except for the part in the beginning between the brackets. This is the core information that Spring Sleuth has added. This data follows the format of:
 
-    [application name, traceId, spanId, export]
+[application name, traceId, spanId, export]
 
-    Application name – This is the name we set in the properties file and can be used to aggregate logs from multiple instances of the same application.
-    TraceId – This is an id that is assigned to a single request, job, or action. Something like each unique user initiated web request will have its own traceId.
-    SpanId – Tracks a unit of work. Think of a request that consists of multiple steps. Each step could have its own spanId and be tracked individually. By default, any application flow will start with same TraceId and SpanId.
-    Export – This property is a boolean that indicates whether or not this log was exported to an aggregator like Zipkin. Zipkin is beyond the scope of this article but plays an important role in analyzing logs created by Sleuth.
+Application name – This is the name we set in the properties file and can be used to aggregate logs from multiple instances of the same application.  
+TraceId – This is an id that is assigned to a single request, job, or action. Something like each unique user initiated web request will have its own traceId.  
+SpanId – Tracks a unit of work. Think of a request that consists of multiple steps. Each step could have its own spanId and be tracked individually. By default, any application flow will start with same TraceId and SpanId.  
+Export – This property is a boolean that indicates whether or not this log was exported to an aggregator like Zipkin. Zipkin is beyond the scope of this article but plays an important role in analyzing logs created by Sleuth.  
 
-    
+
 
 
 
