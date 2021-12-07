@@ -42,11 +42,11 @@ class AccountFeignClientFallback implements AccountFeignClient {
   @Override
   public List<AccountResponseModel> getAccounts(Long userId) {
     if (cause instanceof FeignException) {
-      logger.error("Feign Exception occured: " + cause.getLocalizedMessage());
+      logger.error("Feign Exception occured: " + cause);
     } else if (cause instanceof HystrixTimeoutException) {
       logger.error("Timeout occured connecting to service: " + cause.getLocalizedMessage());
     } else {
-      logger.error("Other exception occured: " + cause.getLocalizedMessage());
+      logger.error("Other exception occured: " + cause);
     }
     return new ArrayList<AccountResponseModel>();
   }
