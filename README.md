@@ -23,7 +23,7 @@ Add properties in config-server git application.properties
 
     spring.zipkin.base-url=http://localhost:9411
     spring.zipkin.sender.type=web
-    spring.zipkin.sampler.probability=1
+    spring.sleuth.sampler.probability=1
 
 ### Test
 

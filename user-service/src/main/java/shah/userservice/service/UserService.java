@@ -2,6 +2,8 @@ package shah.userservice.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import shah.userservice.dto.AccountFeignClient;
 import shah.userservice.dto.AccountResponseModel;
 import shah.userservice.model.User;
@@ -19,6 +22,7 @@ import shah.userservice.repository.UserRepository;
 
 @Data
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UserService {
 
@@ -33,6 +37,8 @@ public class UserService {
 
 	@Autowired
 	AccountFeignClient accountFeignClient;
+
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public User getUser(Long id) {
 		return userRepo.findById(id).get();
@@ -53,10 +59,9 @@ public class UserService {
 		// });
 		// List<AccountResponseModel> userAccounts = response.getBody();
 
-		System.out.println(1);
+		logger.info("1");
 		List<AccountResponseModel> userAccounts = accountFeignClient.getAccounts(userId);
-		System.out.println(2);
-
+		logger.info("2");
 		return userAccounts;
 	}
 }
