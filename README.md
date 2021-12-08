@@ -53,7 +53,17 @@ Starting Zipkin (using Docker)
 
     docker run -d -p 9411:9411 openzipkin/zipkin
 
+`Test`
 
+On browser, access your zipkin console by run
+    
+    http://localhost:9411/zipkin/ 
+
+On Postman, run
+
+    http://localhost:8011/user-service/user/get-user-account/1 
+
+Then refresh your zipkin console
 
 #
 # [Version 7  - Hystrix Circuit Breaker ](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14796232#overview)
