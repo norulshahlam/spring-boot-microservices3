@@ -89,3 +89,21 @@
 2021-12-08 10:45:20.609 DEBUG [user-service,2958db545336c261,7308be914e7092c8] 21268 --- [hystrix-HystrixCircuitBreakerFactory-8] shah.userservice.dto.AccountFeignClient  : [AccountFeignClient#getAccounts] <--- END HTTP (198-byte body)
 2021-12-08 10:45:20.610  INFO [user-service,2958db545336c261,2958db545336c261] 21268 --- [http-nio-auto-6-exec-1] shah.userservice.service.UserService     : 2
 2021-12-08 10:46:24.200  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 10:51:24.200  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 10:56:24.210  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:01:24.213  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:06:24.220  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:11:24.229  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:16:24.241  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:21:24.256  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:26:24.268  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:31:24.272  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:36:24.278  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:41:24.282  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:46:24.288  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:51:24.290  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 11:56:24.305  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 12:01:24.309  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 12:06:24.312  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 12:11:24.321  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2021-12-08 12:16:24.334  INFO [user-service,,] 21268 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
