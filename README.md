@@ -2,11 +2,13 @@
 
 # [Version 8 - Logging and Tracing](https://spring.io/blog/2016/02/15/distributed-tracing-with-spring-cloud-sleuth-and-spring-cloud-zipkin)
 
+Logging using Sleuth
+
 Spring Cloud Sleuth is used to generate and attach the trace id, span id to the logs so that these can then be used by tools like Zipkin and ELK for storage and analysis. Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures.
 
 [![Image](./resources/sleuth-zipkin.JPG "Deploying Spring Boot Apps to AWS using Elastic Beanstalk")](https://cognizant.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/14898450#questions)
 
-### Use case
+### Use case 1: logging using Sleuth
 
 We will implement this in user-service only for now.
 
@@ -16,7 +18,7 @@ Add dependencies to user services
 
     <dependency>
         <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        <artifactId>spring-cloud-starter-sleuth</artifactId>
     </dependency>
 
 Add properties in config-server git application.properties
@@ -37,7 +39,19 @@ Just do any GET request and check the logs. This looks like a normal log, except
     Export – This property is a boolean that indicates whether or not this log was exported to an aggregator like Zipkin. Zipkin is beyond the scope of this article but plays an important role in analyzing logs created by Sleuth.  
 
 
+### Use case 2: Tracing using Zipkin
 
+Add dependencies to user services
+
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-zipkin</artifactId>
+        <version>2.2.8.RELEASE</version>
+    </dependency>
+
+Starting Zipkin (using Docker)
+
+    docker run -d -p 9411:9411 openzipkin/zipkin
 
 
 
