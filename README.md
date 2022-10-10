@@ -152,7 +152,7 @@ And lastly change the return status of account-controller to `OK` and run the sa
 
 ## Last lesson was setup for the database and data. Now lets communicate!
 
-### Method 1 -  [RestTemplate](hhttps://www.youtube.com/watch?v=F3uJyeAyv5g)
+### Method 1 -  [RestTemplate](https://www.youtube.com/watch?v=F3uJyeAyv5g)
 [Why use ParameterizedTypeReference?](https://stackoverflow.com/questions/58254381/resttemplate-get-list-of-objects-why-use-parameterizedtypereference-instead-of)
 [What is ParameterizedTypeReference?](https://shuaibabdulla40.medium.com/need-and-usage-of-rest-template-parameterizedtypereference-13a3a3977f6f)
 
